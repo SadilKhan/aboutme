@@ -6,6 +6,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  </script>
+		<script type="text/javascript"
+		src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+
 		
 	</head>
 	<body class="homepage is-preload">
@@ -41,7 +48,7 @@
 							<header>
 								<h2><a href="#">Detector-Encoder Autoencoder (DEA) </a></h2>
 								<p>
-									A novel architecture for anomaly segmentation
+									A novel architecture for image Reconstruction
 								</p>
 							</header>
 							<figure> 
@@ -49,30 +56,41 @@
 								<figcaption class="figure-caption text-center">Figure 1: DEA Architecture</figcaption> 
 							</figure>
 							
-							<p>
-								Commodo id natoque malesuada sollicitudin elit suscipit. Curae suspendisse mauris posuere accumsan massa
-								posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis purus
-								lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum
-								consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi augue
-								interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper lacinia
-								natoque aenean scelerisque vel lacinia mollis quam sodales congue.
-							</p>
+								A Detector-Encoder Autoencoder, has two parts (Figure 1) - (1) the detection part in the front, $\Phi(F_{d}(x))$, where $F_{d}$ corresponds to an encoding function performing RoI detection (a Detector-Encoder dedicated to representation learning in the scope of object detection, see Figure 2 and where $\Phi$ corresponds to a RoI Pooling transformation (Figure 3) (2) the reconstruction part,  $F_{r}(\phi)$, where $\phi=\Phi(F_{d}(x))$), a Decoder responsible for image reconstruction.
+							
+							<div id="toc_container">
+								<p class="toc_title">Contents</p>
+								<ul class="toc_list">
+								  <li><a href="#First_Point_Header">1. Detection Part</a>
+								  <ul>
+									<li><a href="#First_Sub_Point_1">1.1. SSD</a></li>
+									<li><a href="#First_Sub_Point_2">1.2. IOU Losses</a></li>
+								  </ul>
+								</li>
+								<li><a href="#Second_Point_Header">2. Reconstruction Part</a></li>
+								</ul>
+								</div>
+
 							<section>
 								<header>
-									<h3>Ultrices tempor sagittis nisl</h3>
+									<h3 id="First_Point_Header">Encoder</h3>
 								</header>
 								<p>
-									Nascetur volutpat nibh ullamcorper vivamus at purus. Cursus ultrices porttitor sollicitudin imperdiet
-									at pretium tellus in euismod a integer sodales neque. Nibh quis dui quis mattis eget imperdiet venenatis
-									feugiat. Neque primis ligula cum erat aenean tristique luctus risus ipsum praesent iaculis. Fermentum elit
-									fringilla consequat dis arcu. Pellentesque mus tempor vitae pretium sodales porttitor lacus. Phasellus
-									egestas odio nisl duis sociis purus faucibus morbi. Eget massa mus etiam sociis pharetra magna.
+									In AutoEncoders, the encoder part encodes any input image from which the decoder part reconstructs the image. 
+									DEA is designed to reproduce the detected objects. 
+									Conventional AutoEncoders designed to perform well copy-and-paste of inputs, can generalize too much in some abnormal cases. 
+									To address this issue, we suggest to replace the encoder with a Single Shot Multibox Detector (SSD)[1] using the following feature maps for the purpose of detection with backbone classifier VGG-16 (Figure 2):
 								</p>
-								<p>
-									Eleifend auctor turpis magnis sed porta nisl pretium. Aenean suspendisse nulla eget sed etiam parturient
-									orci cursus nibh. Quisque eu nec neque felis laoreet diam morbi egestas. Dignissim cras rutrum consectetur
-									ut penatibus fermentum nibh erat malesuada varius.
-								</p>
+								<figure> 
+									<img src="images/ssd_architecture.png" width="1000"/> 
+									<figcaption class="figure-caption text-center">Figure 1: SSD Architecture [1]</figcaption> 
+								</figure>
+
+
+								<ui>
+									<li> <strong>Conv4_3: Size $38\times 38\times 512$ </strong></li>
+									
+								</ui>
 							</section>
 							<section>
 								<header>
