@@ -7,15 +7,20 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+			MathJax.Hub.Config({
+			  tex2jax: {
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+				inlineMath: [['$','$']]
+			  }
+			});
 		  </script>
-		<script type="text/javascript"
-		src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-		</script>
+		  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> 
+		
 
 		
 	</head>
 	<body class="homepage is-preload">
+		
 		<div id="page-wrapper">
 
 					<!-- Nav -->
@@ -55,10 +60,14 @@
 								<img src="images/dea.png" width="1000"/> 
 								<figcaption class="figure-caption text-center">Figure 1: DEA Architecture</figcaption> 
 							</figure>
-							
-								A Detector-Encoder Autoencoder, has two parts (Figure 1) - (1) the detection part in the front, $\Phi(F_{d}(x))$, where $F_{d}$ corresponds to an encoding function performing RoI detection (a Detector-Encoder dedicated to representation learning in the scope of object detection, see Figure 2 and where $\Phi$ corresponds to a RoI Pooling transformation (Figure 3) (2) the reconstruction part,  $F_{r}(\phi)$, where $\phi=\Phi(F_{d}(x))$), a Decoder responsible for image reconstruction.
-							
-							<div id="toc_container">
+								A Detector-Encoder Autoencoder, has two parts (Figure 1) - (1) the detection part in the front, 
+								$\Phi(F_{d}(x))$, where $F_{d}$ corresponds to an encoding function performing RoI detection 
+								(a Detector-Encoder dedicated to representation learning in the scope of object detection, 
+								see Figure 2 and where $\Phi$ corresponds to a RoI Pooling transformation (Figure 3) (2) 
+								the reconstruction part,  $F_{r}(\phi)$, where $\phi=\Phi(F_{d}(x))$), a Decoder responsible for 
+								image reconstruction.
+								
+								<div id="toc_container">
 								<p class="toc_title">Contents</p>
 								<ul class="toc_list">
 								  <li><a href="#First_Point_Header">1. Detection Part</a>
