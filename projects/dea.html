@@ -23,20 +23,19 @@
 		
 		<div id="page-wrapper">
 
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="about-me.html">About Me</a></li>
-								<li>
-									<a href="projects.html">Projects</a>
-								</li>
-								
-								<li><a href="publications.html">Publications</a></li>
-								<li><a href="blogs.html">Blogs</a></li>
-								<li><a href="contacts.html">Contact Me</a></li>
-							</ul>
-						</nav>
+			<nav id="nav">
+				<ul>
+					<li><a href="../index.html">Home</a></li>
+					<li><a href="../about-me.html">About Me</a></li>
+					<li>
+						<a href="../projects.html">Projects</a>
+					</li>
+					
+					<li><a href="../publications.html">Publications</a></li>
+					<li><a href="../blogs.html">Blogs</a></li>
+					<li><a href="../contacts.html">Contact Me</a></li>
+				</ul>
+			</nav>
 
 				</div>
 
@@ -58,7 +57,7 @@
 								A Detector-Encoder Autoencoder, has two parts (Figure 1) - (1) the detection part in the front, 
 								$\Phi(F_{d}(x))$, where $F_{d}$ corresponds to an encoding function performing RoI detection 
 								(a Detector-Encoder dedicated to representation learning in the scope of object detection, 
-								see Figure 2 and where $\Phi$ corresponds to a RoI Pooling transformation (Figure 3) (2) 
+								see Figure 2 and where $\Phi$ corresponds to a RoI Pooling transformation (Figure 4) (2) 
 								the reconstruction part,  $F_{r}(\phi)$, where $\phi=\Phi(F_{d}(x))$), a Decoder responsible for 
 								image reconstruction.
 								
@@ -87,7 +86,7 @@
 								</p>
 								<figure> 
 									<img src="../images/ssd_architecture.png" width="1000"/> 
-									<figcaption class="figure-caption text-center">Figure 1: SSD Architecture [1]</figcaption> 
+									<figcaption class="figure-caption text-center">Figure 2: SSD Architecture [1]</figcaption> 
 								</figure>
 
 
@@ -114,7 +113,7 @@
 										A Region of Interest (RoI) is determined from the final predicted box by maximizing the 
 										probability values, which provides a confidence value with respect to the fact that it contains a 
 										certain object. The corresponding features are accessible by checking the 
-										corresponding index (Figure 3) and this gives us the information of which feature maps 
+										corresponding index (Figure 4) and this gives us the information of which feature maps 
 										the RoI is from.  RoIs are like the objects, of different sizes and aspect ratios. By adding some 
 										layers devoted to RoI resizing after SSD, RoIs are ready to be properly processed by the 
 										reconstruction part. </p>
@@ -131,12 +130,12 @@
 										</p>
 										<figure> 
 											<img src="../images/whynotl1.png" width="800"/> 
-											<figcaption class="figure-caption text-center">Figure 2: Three cases where the $l_{2}$-norm distance between the 
+											<figcaption class="figure-caption text-center">Figure 3: Three cases where the $l_{2}$-norm distance between the 
 												representations of two rectangular bounding boxes, each given by the concatenation of the coordinates of 
 												two opposite corners, has the same value but IoU and GIoU metrics have very different values [2]</figcaption> 
 										</figure>
 										<p>
-										In Figure 2, the predicted bounding box (black rectangle) and ground truth box 
+										In Figure 3, the predicted bounding box (black rectangle) and ground truth box 
 										(green rectangle) are each represented by their top-left and bottom-right corners 
 										(pointed by arrows), and whose the Cartesian coordinates are denoted as $(x_{1} , y_{1} , x_{2} , y_{2})$ 
 										and $(x_{1}' , y_{1}' , x_{2}' , y_{2}')$, respectively. For simplicity, let us assume that the distance, 
@@ -172,7 +171,7 @@
 									</p>
 									<figure> 
 										<img src="../images/roi_alignment.png" width="600"/> 
-										<figcaption class="figure-caption text-center">Figure 3: RoI Alignment step in DEA architecture.</figcaption> 
+										<figcaption class="figure-caption text-center">Figure 4: RoI Alignment step in DEA architecture.</figcaption> 
 									</figure>
 
 									<p>
@@ -285,14 +284,14 @@
 	</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
 
 	</body>
 </html>
