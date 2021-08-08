@@ -127,11 +127,168 @@
                                         For this case, the IoU computation is very easy.</p>
 
                                     <p>
-
-                                        
+										<strong><i>A. Loss Function:</i></strong>
                                     </p>
+									<p>
+										The IOU loss function[4] for the ground bounding box $B_{g}=(x_{1} , y_{1} , x_{2} , y_{2} )$ and the predicted bounding box $B_{d}=(x_{1}^{\prime} , y_{1}^{\prime} , x_{2}^{\prime} , y_{2}^{\prime} )$ is defined as
+									</p>
+									<p style="text-align: center">
+									$L_{IoU}=1-IoU(B_{g},B_{d})$
+									</p>
+									<p>We have to prove that $L_{IoU}$ is a metric</p>
+									<p>
+										<ol>
+											<li>
+												Since $0\leq IoU \leq 1, 0\leq L_{IoU} \leq 1$. 
+												So $L_{IoU}$ is non-negative. $L_{IoU}=0 \text{ when } 
+												IoU(A,B)=1 \implies A and B are the same rectangle$.
+											</li>
+											<li>
+												$IoU(A,B)=IoU(B,A) \implies L_{IoU}(A,B)=L_{IoU}(B,A)$. 
+												So $L_{IoU}$ is symmetric.
+											</li>
+											<li>
+												$L_{IoU}$ satisfies triangle inequality.[5]
+											</li>
+										</ol>
+										So $L_{IoU}$ is a metric.
+									</p>
+									<p><strong><i>B. Differentiability of IoU Loss:</i></strong></p>
+									<p>IOU loss is differentiable and can be backpropagated.
+										Let $B_{g}=\{x_{1},y_{1},x_{2},y_{2}\}$ be the ground truth and
+										 $B_{d}=\{x_{1}^{\prime} , y_{1}^{\prime} , x_{2}^{\prime} , y_{2}^{\prime}\}$
+										be the predicted bounding box.</p>
+									<p style="text-align: left">
+									$X= \text{Area of } B_{g}=(x_{2}-x_{1}) \times (y_{2}-y_{1})$
+									<br>$X^{\prime}= \text{Area of } B_{d}=(x_{2}^{\prime}-
+									x_{1}^{\prime})\times (y_{2}^{\prime}-y_{1}^{\prime})$
+									<br>$I=(max(x_{1},x_{1}^{\prime})-min(x_{2},x_{2}^{\prime}))
+									\times (max(y_{1},y_{1}^{\prime})-min(y_{2},y_{2}^{\prime}))$
+									<br> $L_{IoU}=1-\frac{I}{X+X^{\prime}-I}=1-\frac{I}{U}, 
+									\text{where } U=X+X^{\prime}-I$
+									<br> $\frac{\partial L}{\partial x^{\prime}}=\frac{I(\Delta_{x^{\prime}}X-
+									\Delta_{x^{\prime}}I)-U\Delta_{x^{\prime}}I}{U^{2}}$
+									<br>$\frac{\partial X}{\partial x_{1}^{\prime}}=-
+									(y_{2}^{\prime}-y_{1}^{\prime}), \frac{\partial X}{\partial x_{2}^
+									{\prime}}=(y_{2}^{\prime}-y_{1}^{\prime}),\frac{\partial X}
+									{\partial y_{2}^{\prime}}=(x_{2}^{\prime}-x_{1}^{\prime}),
+									\frac{\partial X}{\partial y_{1}^{\prime}}=-(x_{2}^{\prime}-x_{1}^
+									{\prime})$
+									</p>
+
+									<p style="text-align: center">
+									<br> $\frac{\partial I}{\partial x_{1}^{\prime}}=
+									\begin{cases}
+									(max(y_{1},y_{1}^{\prime})-min(y_{2},y_{2}^{\prime})) & \text{ if } x_{1}^{\prime}>x_{1}\\
+									0 & { Otherwise } \end{cases}$
+									<br> $\frac{\partial I}{\partial x_{2}^{\prime}}=
+									\begin{cases}
+									-(max(y_{1},y_{1}^{\prime})-min(y_{2},y_{2}^{\prime})) & \text{ if } x_{2}>x_{2}^{\prime}\\
+									0 & { Otherwise } \end{cases} $
+
+									<br> $\frac{\partial I}{\partial y_{1}^{\prime}}=
+									\begin{cases}
+									(max(x_{1},x_{1}^{\prime})-min(x_{2},x_{2}^{\prime})) & \text{ if } y_{1}^{\prime}>y_{1}\\
+									0 & { Otherwise }
+									\end{cases}$
+									<br> $\frac{\partial I}{\partial y_{2}^{\prime}}=
+									\begin{cases}
+									-(max(x_{1},x_{1}^{\prime})-min(x_{2},x_{2}^{\prime})) & \text{ if } y_{2}>y_{2}^{\prime}\\
+									0 & { Otherwise }
+									\end{cases}$
+									</p>
+									<p>
+										So $L_{IoU}$ can be directly used as the objective function to 
+										optimize. It is therefore preferable to use IoU as the objective 
+										function for 2D object detection tasks. Given the choice between 
+										optimizing a metric itself vs.a surrogate loss function, 
+										the optimal choice is the metric itself.
+									</p>
 
                                 </section>
+
+								<section>
+									<header>
+										<h3 id="Second_Point_Header">3. GIoU Loss</h3>
+									</header>
+									<p>
+										However, IOU has two major issues as a metric and loss function.
+									</p>
+									<p>
+										<ol>
+											<li>
+												If two boxes don't overlap, then their IoU is zero, 
+												which doesn't give any indication about the proximity 
+												of the two boxes.
+											</li>
+											<li>
+												In case of non-overlapping boxes, since their Iou is zero, 
+												the gradient is also zero. 
+												So $L_{IoU}$ can't be optimized.
+											</li>
+										</ol>
+									</p>
+									<p>
+										Generalized IoU (GIoU) addresses these weaknesses of IoU.
+									</p>
+									<p>
+										<strong><i>A. Loss Function:</i></strong>
+                                    </p>
+									<p>
+										The Loss function for the Generalized IoU is defined as follows:-
+									</p>
+									<p>
+										Let A and B be two boxes.
+										<br> Let C be the smallest enclosing box.
+										<br> $IoU=\frac{|A\cap B|}{|A \cup B|}$.
+										<br> $GIoU=IoU-\frac{|C\setminus (A\cup B)|}{|C|}$.
+										<br> $L_{GIoU}=1-GIoU$.
+									</p>
+									<p> Some of the properties of GIoU[1]:-
+									</p>
+									<ul>
+										<li>
+											Similar to $L_{IoU}, L_{GIoU}$ is also non-negative, 
+											symmetric and satisfies triangle inequality. 
+											So $L_{GIoU}$ is a metric.
+										</li>
+										<li>
+											GIoU is a lower bound for IoU. 
+											$\forall A,B, GIoU(A,B)\leq IoU(A,B)$ and 
+											this lower bound becomes tighter 
+											when A and B have a stronger shape 
+											similarity <i>i.e</i> $\lim_{A \to B} GIoU(A,B)=IoU(A,B)$.
+										</li>
+										<li>
+											$0\leq IoU(A,B)\leq 1 \implies -1\leq GIoU(A,B)\leq 1$.
+										</li>
+										<li>
+											$GIoU=1 \text{ when } |A\cap B|=|A\cup B|$ <i>i.e</i> when A and B completely overlaps.
+										</li>
+										<li>
+											GIoU tends to -1 as the ratio between occupying 
+											regions $|A\cup B|$ and the smallest enclosing box 
+											C goes to zero, i.e $\lim_{\frac{|A\cup B|}{C} \to 0} 
+											GIoU(A,B)=-1 $
+										</li>
+										<li>
+											$L_{GIoU}$ is differentiable.
+										</li>
+										<li>
+											When IoU=0, i.e boxes don't overlap, 
+											$L_{GIoU}=2-\frac{|A\cup B|}{|C|}$. 
+											By minimizing $L_{GIoU}$, we are maximizing $\frac{|A\cup B|}{|C|}$ 
+											($0\leq \frac{|A\cup B|}{|C|} \leq 1$) which means we are 
+											maximizing the region of union $|A\cup B|$ and minimizing the 
+											enclosing box area $|C|$, which will be possible if the 
+											predicted box goes to the ground truth box.
+										</li>
+
+									</ul>
+
+
+
+								</section>
 
 
 
@@ -154,6 +311,11 @@
 									<li>
 										<p>J Yu, et al</p>
 										<a href="https://arxiv.org/abs/1608.01471">UnitBox: An Advanced Object Detection Network
+                                        </a>
+									</li>
+									<li>
+										<p>S Kosub </p>
+										<a href="https://arxiv.org/pdf/1612.02696.pdf">A note on the triangle inequality for the Jaccard distance
                                         </a>
 									</li>
 								</ol>
