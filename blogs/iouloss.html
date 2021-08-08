@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Md.Sadil Khan</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+			  tex2jax: {
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+				inlineMath: [['$','$']]
+			  }
+			});
+		  </script>
+		  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> 
+		
+
+		
+	</head>
+	<body class="homepage is-preload">
+		
+		<div id="page-wrapper">
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="../index.html">Home</a></li>
+								<li><a href="../about-me.html">About Me</a></li>
+								<li>
+									<a href="../projects.html">Projects</a>
+								</li>
+								
+								<li><a href="../publications.html">Publications</a></li>
+								<li><a href="../blogs.html">Blogs</a></li>
+								<li><a href="../contacts.html">Contact Me</a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1">
+
+					<div class="container">
+						<article id="main" class="special">
+							<header>
+								<h2><a href="#">IoU Losses</a></h2>
+                                <p> Loss Functions for Object Detection</p>
+                            </header>
+
+                            <div id="toc_container">
+								<p class="toc_title">Contents</p>
+								<ul class="toc_list">
+								  <li><a href="#First_Point_Header">1.  Why not $l_{n}$?</a>
+								</li>
+								<li><a href="#Second_Point_Header">2. IoU Loss</a></li>
+								<li><a href="#Third_Point_Header">3. GIoU Loss</a></li>
+								<li><a href="#Fouth_Point_Header">4. DIoU and CIoU Loss</a></li>
+                                <li><a href="#Fouth_Point_Header">5. EIoU Loss</a></li>
+								</ul>
+								</div>
+
+                            <section>
+                                <header>
+                                    <h3 id="First_Point_Header">1. Why not $l_{n}$?</h3>
+                                </header>
+                                <p>
+                                    Bounding Box Regression is the most important task in Object Detection.
+                                    In conventional object detection networks, a $l_{n}$ norm is used during 
+                                    training to evaluate the performance of the detector with 
+                                    the IoU (Intersection over Union) metric: $IoU=\frac{|B_{G}\cap B_{P}|}{|B_{G} \cup B_{P}|}$ 
+                                    where $B_{g}$ and $B_{d}$ are the ground and predicted bounding boxes, respectively.
+                                    However there is no correlation between minimizing $l_{n}$ norm and improving the 
+                                    loss associated to the IoU metric, $L_{IoU}=1-IoU(B_{g},B_{d})$[1].
+                                </p>
+                                <figure> 
+                                    <img src="../images/whynotl1.png" width="800"/> 
+                                    <figcaption class="figure-caption text-center">Figure 1: Three cases where the $l_{2}$-norm distance between the 
+                                        representations of two rectangular bounding boxes, each given by the concatenation of the coordinates of 
+                                        two opposite corners, has the same value but IoU and GIoU metrics have very different values [1]</figcaption> 
+                                </figure>
+                                <p>
+                                    In Figure 1, the predicted bounding box 
+                                    (black rectangle) and ground truth box (green rectangle) are 
+                                    each represented by their top-left and bottom-right corners 
+                                    (pointed by arrows), and whose the Cartesian coordinates are 
+                                    denoted as $(x_{1} , y_{1} , x_{2} , y_{2})$ and $(x_{1}' , 
+                                    y_{1}' , x_{2}' , y_{2}')$, respectively. For simplicity, 
+                                    let us assume that the distance, e.g. $l_{2}-norm$, 
+                                    between one of the corners of two boxes is fixed. Now, if the 
+                                    second corner lies on a circle with fixed radius centered on the 
+                                    ground truth box, then the $l_{2}$ loss between the ground truth 
+                                    box and the predicted bounding box is the same although their IoU 
+                                    values can be different depending upon the positions of top-right 
+                                    and bottom-left corners. So, using IOU-loss should be the best 
+                                    option since we will then minimize the evaluating metric.
+                                </p>
+                                <section>
+                                    <header>
+                                        <h3 id="Second_Point_Header">2. IoU Loss [4]</h3>
+                                    </header>
+                                    <p>
+                                        Generally, for two finite sample sets A and B, their IoU is defined as the intersection $(A \cap B)$ divided by the union $(A \cup B)$ of A and B.
+                                    </p>
+                                    <p style="text-align: center">
+                                        $IoU(A,B)=\frac{|A \cap B|}{|A \cup B|}=\frac{|A \cap B|}{|A|+|B|-|A \cup B|}$
+                                    </p>
+                                    <p>
+                                        For bounding box-level object detection, 
+                                        the target object is usually represented by a minimum Bbox 
+                                        rectangle in the 2D image. Base on this representation, the 
+                                        IoU computation between the ground bounding box $B_{g}=(x_{1} , y_{1} , x_{2} , y_{2} )$ and 
+                                        the predicted bounding box $B_{d}=(x_{1}^{\prime} , y_{1}^{\prime} , x_{2}^{\prime} , 
+                                        y_{2}^{\prime} )$ is defined as:-
+                                    </p>
+                                    <p style="text-align: center">
+                                        $ IoU(A,B)=\frac{\text{Area of overlap between $B_{g}$ and $B_{d}$}}{\text{Area of union of $B_{g}$ and $B_{d}$}}=$
+                                    </p>
+                                    <p style="text-align: center">
+                                        $\frac{(max(x_{1},x_{1}^{\prime})-min(x_{2},x_{2}^{\prime}))\times (max(y_{1},y_{1}^{\prime})-min(y_{2},y_{2}^{\prime}))}{(x_{2}-x_{1}) (y_{2}-y_{1})+(x_{2}^{\prime}-x_{1}^{\prime}) (y_{2}^{\prime}-y_{1}^{\prime})-(max(x_{1},x_{1}^{\prime})-min(x_{2},x_{2}^{\prime})) (max(y_{1},y_{1}^{\prime})-min(y_{2},y_{2}^{\prime}))}$
+                                    </p>
+                                    <p>Usually, objects are labeled with axis-aligned BBoxes in the 
+                                        ROI dataset. By taking this kind of labels as ground truth, 
+                                        the predicted BBoxes are also axis-aligned rectangles. 
+                                        For this case, the IoU computation is very easy.</p>
+
+                                    <p>
+
+                                        
+                                    </p>
+
+                                </section>
+
+
+
+                            </section>
+                            <section>
+								<h3>Bibliography</h3>
+								<ol>
+									<li>
+										<p>Hamid Rezatofighi, Nathan Tsoi, JunYoung Gwak, Amir Sadeghian, Ian Reid, Silvio Savarese.</p>
+										<a href="https://arxiv.org/abs/1902.09630">Generalized Intersection over Union: A Metric and A Loss for Bounding Box Regression.</a>
+									</li>
+									<li>
+										<p>Zheng Z., et al</p>
+										<a href="https://arxiv.org/abs/1911.08287">Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression</a>
+									</li>
+									<li>
+										<p>Zhang Y., et al</p>
+										<a href="https://arxiv.org/abs/2101.08158">Focal and Efficient IOU Loss for Accurate Bounding Box Regression</a>
+									</li>
+									<li>
+										<p>J Yu, et al</p>
+										<a href="https://arxiv.org/abs/1608.01471">UnitBox: An Advanced Object Detection Network
+                                        </a>
+									</li>
+								</ol>
+							</section>
+							
+						</article>
+
+					<hr />
+						
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						
+
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col-12">
+
+							<!-- Contact -->
+								<section class="contact">
+									<ul class="icons">
+										<li><a href="https://github.com/SadilKhan" class="icon brands fa-github"><span class="label">Twitter</span></a></li>
+										<li><a href="https://www.facebook.com/profile.php?id=100043829644032" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="https://www.instagram.com/ryzenx_sk/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="https://www.linkedin.com/in/mohammad-sadil-khan-a96568170/" class="icon brands fa-linkedin-in"><span class="label">Linkedin</span></a></li>
+									</ul>
+								</section>
+
+							<!-- Copyright -->
+								<div class="copyright">
+									<ul class="menu">
+										<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+									</ul>
+								</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+	</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>
