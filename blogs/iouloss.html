@@ -57,8 +57,8 @@
 								</li>
 								<li><a href="#Second_Point_Header">2. IoU Loss</a></li>
 								<li><a href="#Third_Point_Header">3. GIoU Loss</a></li>
-								<li><a href="#Fouth_Point_Header">4. DIoU and CIoU Loss</a></li>
-                                <li><a href="#Fouth_Point_Header">5. EIoU Loss</a></li>
+								<li><a href="#Fourth_Point_Header">4. DIoU and CIoU Loss</a></li>
+                                <li><a href="#Fifth_Point_Header">5. EIoU Loss</a></li>
 								</ul>
 								</div>
 
@@ -209,7 +209,7 @@
 
 								<section>
 									<header>
-										<h3 id="Second_Point_Header">3. GIoU Loss</h3>
+										<h3 id="Third_Point_Header">3. GIoU Loss</h3>
 									</header>
 									<p>
 										However, IOU has two major issues as a metric and loss function.
@@ -286,13 +286,81 @@
 
 									</ul>
 
-
-
 								</section>
 
+								<section>
+									<header>
+										<h3 id="Fourth_Point_Header">4. DIoU and CIoU Loss</h3>
+									</header>
+									<p>IoU loss works only for overlapping boxes and the 
+										problem of gradient-vaninshing in case of non-overlapping boxes 
+										had been solved by GIoU Loss but GIoU loss has several limitations.</p>
+										<ul>
+											<li>
+												Generalized IoU tends to increase the size of the predicted 
+												bounding box to cover the target ground truth box. From Figure 2,
+												we can see that when the predicted bounding box covers the
+												ground truth box then $ L_{GIoU}=L_{IoU}$(Since C=$max(A,B)\implies 
+												C\setminus(A\cup B)=\Phi$). 
+											</li>
+											<li>
+												$L_{GIoU}$ converges slowly.
+											</li>
+										</ul>
+									
+										<figure> 
+											<img src="../images/whynotgiou.jpg" width="800"/> 
+											<figcaption class="figure-caption text-center">Figure 2: The 
+												<span style="color:greenyellow">green</span>,
+												<span style="color:rgb(117, 111, 111)">black</span>,
+												<span style="color:cyan">blue</span>,
+												<span style="color:red">red</span> represents the ground truth 
+												box, the anchor box, the predicted box at ith step 
+												when GIoU loss is used,the predicted box at ith step 
+												when DIoU loss is used respectively. GIoU tends to extend the box
+												to cover the [2]
+											</figcaption> 
+										</figure>
+										<p>
+											<strong><i>A. Distance IoU (DIoU) Loss Function[2]:</i></strong>
+										</p>
+										<p>
+											Generally IoU-based loss functions can be defined as
+										</p>
+										<p style="text-align: center">
+											$L=1-IoU+R(B,B^{gt})$
+										</p>
+										<p>
+											where $R(B,B^{gt})$ is a penalty term and $B_{gt}$ and $B$ are the
+											ground truth box and predicted box.
+										</p>
+										<p>
+											DIoU minimizes the normalized distance between the centre point 
+											of the two bounding boxes. The penalty term is
+										</p>
+										<p style="text-align: center">
+											$R_{DIoU}=\frac{\rho^{2}(b,b_{gt})}{c^{2}}$
+										</p>
+										<p>
+											where $b$ and $b_{gt}$ denote the central points of $B$ and $B_{gt}$, 
+											and $c$ is the diagonal length of the smallest enclosing box.
+											and $\rho$ is the euclidean distance. So,
+										</p>
+										<p style="text-align: center">
+											$L_{DIoU}=1-IoU+\frac{\rho^{2}(b,b_{gt})}{c^{2}}$
+										</p>
+										<ul>
+											<li>
+												$L_{DIoU}$ is scale invariant.
+											</li>
+											<li>$L_{IoU}=L_{GIoU}=L_{DIoU}=0$ when two boxes are same.</li>
+										</ul>
+									
 
+									
 
-                            </section>
+                            	</section>
+
                             <section>
 								<h3>Bibliography</h3>
 								<ol>
