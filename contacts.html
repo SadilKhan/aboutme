@@ -28,20 +28,15 @@
             </div>
             <div class="row">
               <div class="column">
-                <form action="/action_page.php">
-                  <label for="fname">First Name</label>
-                  <input type="text" id="fname" name="firstname" placeholder="Your Name">
-                  <label for="lname">Last Name</label>
-                  <input type="text" id="lname" name="lastname" placeholder="Your Last Name">
-                  <label for="email">Email</label>
-                  <input type="text" id="email" name="emailid" placeholder="Your Email ID">
-                  <label for="subject">Subject</label>
-                  <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
-                  <form method="post" action="mailto:mdsadilkhan99@gmail.com" >
-					<input type="submit" value="Send Email" /> 
-					</form>
-                </form>
-
+				<form action="https://formsubmit.co/mdsadilkhan99@gmail.com" method="POST">
+					<label for="fname">First Name</label>
+					<input type="text" id="fname" name="firstname" placeholder="Your Name" required>
+					<label for="lname">Last Name</label>
+					<input type="text" id="lname" name="lastname" placeholder="Your Last Name" required>
+					<label for="email">Email</label>
+                  	<input type="text" id="email" name="emailid" placeholder="Your Email ID" required>
+					<button type="submit">Send Email</button>
+			   </form>
 
               </div>
             </div>
