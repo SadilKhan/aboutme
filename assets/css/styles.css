@@ -53,7 +53,7 @@ h1{
 body {
 	margin: 0;
 	background: #222;
-	font-family: 'Work Sans', sans-serif;
+	font-family: Arial, sans-serif;
 	font-weight: 100;
 }
 
@@ -123,4 +123,3 @@ nav a::before {
 nav a:hover::before {
   width: 100%;
 }
-
