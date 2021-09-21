@@ -16,7 +16,7 @@ section{
     width: 100%;
     height: 100vh;
     color: #fff;
-    background: linear-gradient(-45deg,#5a2938,#763b92,#23A6D5, #23D5AB);
+    background: linear-gradient(-45deg,#cca6a8,#bd99ce,#23A6D5, #83dac5);
     background-size: 400% 400%;
     position: relative;
     animation: change 10s ease-in-out infinite;
