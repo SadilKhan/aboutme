@@ -29,7 +29,7 @@ h1{
     border: 2px solid #fff;
     position: absolute;
     top: 15%;
-    left: 20%;
+    left: 6%;
     transform: translate(-50%, -50%);
     padding: 2rem 5rem;
 }
@@ -48,12 +48,13 @@ h1{
 
 }
 
+
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
 body {
 	margin: 0;
 	background: #222;
 	font-family: 'Work Sans', sans-serif;
-	font-weight: 800;
+	font-weight: 100;
 }
 
 .container {
