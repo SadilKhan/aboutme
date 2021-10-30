@@ -55,7 +55,6 @@ body {
 	background: #222;
 	font-family: Arial, sans-serif;
 	font-weight: 100;
-  font-size:15.4px;
 }
 
 .container {
@@ -127,4 +126,6 @@ nav a:hover::before {
 
 li.l1{
   line-height:normal;
-  margin-bottom: 1mm;}
+  margin-bottom: 1mm;
+  font-size:15.4px;
+}
