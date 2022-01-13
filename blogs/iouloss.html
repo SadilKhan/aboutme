@@ -2,10 +2,18 @@
 <html>
 	<head>
 		<title>Md.Sadil Khan</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+		<link rel="manifest" href="favicon/site.webmanifest">
+		<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#44c4e4">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<link rel="stylesheet" href="../assets/css/styles.css">
+		<meta name="theme-color" content="#ffffff">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 		<script type="text/x-mathjax-config">
 			MathJax.Hub.Config({
 			  tex2jax: {
@@ -16,47 +24,18 @@
 		  </script>
 		  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> 
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/railscasts.css"/>
-
-		  
-		
-
-		
+		 
 	</head>
-	<body class="homepage is-preload">
+	<body>
 		<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/highlight.min.js"></script>
 		<script>
 			hljs.initHighlightingOnLoad();
 		</script>
-		
-		<div id="page-wrapper">
-
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="../index.html">Home</a></li>
-								<li><a href="../about-me.html">About Me</a></li>
-								<li>
-									<a href="../projects.html">Projects</a>
-								</li>
-								
-								<li><a href="../publications.html">Publications</a></li>
-								<li><a href="../blogs.html">Blogs</a></li>
-								<li><a href="../contacts.html">Contact Me</a></li>
-							</ul>
-						</nav>
-
-				</div>
-
 			<!-- Main -->
-				<div class="wrapper style1">
-
-					<div class="container">
+					<div class="container_v1">
 						<article id="main" class="special">
-							<header>
-								<h2><a href="#">IoU Losses</a></h2>
-                                <p> Loss Functions for Object Detection</p>
-                            </header>
-
+								<h2 style="text-align: center; font-size:70px">IoU Losses</h2>
+                                <p style="text-align: center;font-size:40px"> Loss Functions for Object Detection</p>
                             <div id="toc_container">
 								<p class="toc_title">Contents</p>
 								<ul class="toc_list">
@@ -69,10 +48,10 @@
 								</ul>
 								</div>
 
-                            <section>
-                                <header>
-                                    <h3 id="First_Point_Header">1. Why is $l_{n}$ not a good choice?</h3>
-                                </header>
+                            <section class="section-v1">
+								<header class="header-v1">
+									<h3 id="First_Point_Header">1. Why is $l_{n}$ not a good choice?</h3>
+								</header>
                                 <p>
                                     Bounding Box Regression is the most important task in Object Detection.
                                     In conventional object detection networks, a $l_{n}$ norm is used during 
@@ -84,7 +63,7 @@
                                 </p>
                                 <figure> 
                                     <img src="../images/whynotl1.png" width="800"/> 
-                                    <figcaption class="figure-caption text-center">Figure 1: Three cases where the $l_{2}$-norm distance between the 
+                                    <figcaption>Figure 1: Three cases where the $l_{2}$-norm distance between the 
                                         representations of two rectangular bounding boxes, each given by the concatenation of the coordinates of 
                                         two opposite corners, has the same value but IoU and GIoU metrics have very different values [1]</figcaption> 
                                 </figure>
@@ -104,10 +83,11 @@
                                     and bottom-left corners. So, using IOU-loss should be the best 
                                     option since we will then minimize the evaluating metric.
                                 </p>
-                                <section>
-                                    <header>
+								</section>
+                                <section class="section-v1">
+									<header class="header-v1">
                                         <h3 id="Second_Point_Header">2. IoU Loss [4]</h3>
-                                    </header>
+										</header>
                                     <p>
                                         Generally, for two finite sample sets A and B, their IoU is defined as the intersection $(A \cap B)$ divided by the union $(A \cup B)$ of A and B.
                                     </p>
@@ -214,8 +194,8 @@
 
                                 </section>
 
-								<section>
-									<header>
+								<section class="section-v1">
+									<header class="header-v1">
 										<h3 id="Third_Point_Header">3. GIoU Loss</h3>
 									</header>
 									<p>
@@ -294,8 +274,8 @@
 									</ul>
 								</section>
 
-								<section>
-									<header>
+								<section class="section-v1">
+									<header class="header-v1">
 										<h3 id="Fourth_Point_Header">4. DIoU and CIoU Loss</h3>
 									</header>
 									<p>IoU loss works only for overlapping boxes and the 
@@ -377,14 +357,14 @@
 											-tan^{-1}\frac{w}{h})^2 
 											$ and $\alpha=\frac{v}{(1-IOU)+v}$.</p>
                             	</section>
-								<section>
-									<header>
+								<section class="section-v1">
+									<header class="header-v1"> 
 										<h3 id="Fifth_Point_Header">5. EIoU Loss</h3>
 									</header>
 
 								</section>
 
-								<section>
+								<section class="section-v1">
 									<pre style="font-size: 12px; font-family: 'Avenir', Verdana, sans-serif;">
 										<code>
 import os
@@ -557,54 +537,7 @@ class IoULoss(nn.Module):
 							
 						</article>
 
-					<hr />
-						
-
-			<!-- Footer -->
-			<div id="footer">
-				<div class="container">
-					<div class="row">
-						
-
-					</div>
-					<hr />
-					<div class="row">
-						<div class="col-12">
-
-							<!-- Contact -->
-								<section class="contact">
-									<ul class="icons">
-										<li><a href="https://github.com/SadilKhan" class="icon brands fa-github"><span class="label">Twitter</span></a></li>
-										<li><a href="https://www.facebook.com/profile.php?id=100043829644032" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="https://www.instagram.com/ryzenx_sk/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="https://www.linkedin.com/in/mohammad-sadil-khan-a96568170/" class="icon brands fa-linkedin-in"><span class="label">Linkedin</span></a></li>
-									</ul>
-								</section>
-
-							<!-- Copyright -->
-								<div class="copyright">
-									<ul class="menu">
-										<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-									</ul>
-								</div>
-
 						</div>
-
-					</div>
-				</div>
-			</div>
-
-	</div>
-
-		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../assets/js/jquery.scrolly.min.js"></script>
-			<script src="../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
 
 	</body>
 </html>
