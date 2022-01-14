@@ -193,7 +193,7 @@ header {
 /* Mobile Nav */
 
 .menu {
-  display: none;
+  display: flex;
 }
 
 .overlay {
@@ -253,7 +253,7 @@ header {
 @media only screen and (max-width: 800px) {
   .nav__links,
   .cta {
-    display: none;
+    display: flex;
   }
   .menu {
     display: initial;
