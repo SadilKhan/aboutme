@@ -1,7 +1,6 @@
-@import url(http://fonts.googleapis.com/css?family=EB+Garamond);
 body{
 	margin: 0;
-	font-family: Garamond, EB Garamond, Georgia, serif;
+	font-family: serif;
 	line-height: 1.3em;
 }
 
@@ -91,6 +90,7 @@ p {
 	color: rgba(0, 0, 0, 0.664);
 }
 
+
 li {
 	color: rgba(0, 0, 0, 0.664);
 	line-height: 2em;
@@ -114,7 +114,7 @@ li {
   .nav__links a,
   .cta,
   .overlay__content a {
-	font-family: Garamond, EB Garamond, Georgia, serif;
+	font-family: serif;
 	font-weight: bold;
 	color: #000000;
 	text-decoration: none;
