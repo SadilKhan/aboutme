@@ -8,7 +8,7 @@ body{
 .grid > div{
 	background: rgb(243, 243, 243);
 	padding: 1em;
-	animation: zoom 400ms;
+	animation: zoom 600ms;
 
 }
 
@@ -99,12 +99,22 @@ li {
 
 
  /* Navigation Bar */
+ @keyframes easeIn {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
  header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 10%;
+	padding: 0px 10%;
 	background-color: #4041445e;
+	animation: easeIn 600ms;
   }
   
   .logo {
