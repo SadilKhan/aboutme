@@ -16,7 +16,7 @@ body {
 
 .grid>div:nth-child(odd) {
 	background: rgb(221, 226, 243);
-	height: 30em;
+	height:min-content;
 }
 .grid >div:nth-child(1) {
 	background: rgba(36, 134, 226, 0.253);
@@ -26,7 +26,7 @@ body {
 
 .grid {
 	display: grid;
-	grid-template-columns: 18% 64% 18%;
+	grid-template-columns: 18% 60% 22%;
 	grid-gap: 1em;
 	grid-auto-rows: auto;
 	margin-top: 4em;
