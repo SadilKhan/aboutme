@@ -40,14 +40,15 @@ body {
 
 /* Grid for Blogs*/
 .bloggrid>div {
-	background: rgba(255, 255, 255, 0.199);
+	background: rgba(255, 255, 255, 0.418);
 	padding: 1em;
 	animation: zoom 600ms;
 	border-radius: 25px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.26), 0 0 1px rgba(0,0,0,0.1);
 }
 
 .bloggrid >div:nth-child(1) {
-	background: rgba(255, 255, 255, 0.199);
+	background: rgba(255, 255, 255, 0.295);
 	height:max-content;
 }
 
@@ -266,7 +267,7 @@ header {
 /* Table of Contents */
 
 #toc_container {
-	background: rgba(255, 255, 255, 0);
+	background: rgba(255, 255, 255, 0.267);
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.26), 0 0 1px rgba(0,0,0,0.1);
 	border: 1px solid #aaa;
 	display: table;
