@@ -2,8 +2,8 @@ body {
 	margin: 0;
 	font-family: serif;
 	line-height: 1.3em;
-	background-image: radial-gradient(circle,#7dd2ec54,#81bdf59d),url("images/background_image.jpg");
-
+	background-image: radial-gradient(circle,#78b2c441,#87b3dd80),url("images/background_image.jpg");
+	background-size: cover;
 }
 
 /* Grid Layout */
@@ -266,7 +266,7 @@ header {
 /* Table of Contents */
 
 #toc_container {
-	background: rgba(36, 134, 226, 0.062);
+	background: rgba(255, 255, 255, 0);
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.26), 0 0 1px rgba(0,0,0,0.1);
 	border: 1px solid #aaa;
 	display: table;
