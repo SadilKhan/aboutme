@@ -2,7 +2,7 @@ body {
 	margin: 0;
 	font-family: serif;
 	line-height: 1.3em;
-	background-image: radial-gradient(circle,#78b2c441,#87b3dd80),url("images/background_image.jpg");
+	background-image:radial-gradient(circle,rgba(255,255,255,.5), rgba(255,255,255,.5)),url("images/background_image.jpg");
 	background-size: cover;
 }
 
@@ -134,7 +134,7 @@ h1 {
 }
 
 p {
-	color: rgba(0, 0, 0, 0.664);
+	color: rgba(0, 0, 0, 0.822);
 }
 
 
