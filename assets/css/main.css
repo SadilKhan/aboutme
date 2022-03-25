@@ -2,14 +2,14 @@ body {
 	margin: 0;
 	font-family: serif;
 	line-height: 1.3em;
-	background-image:radial-gradient(circle,rgba(255,255,255,.5), rgba(255,255,255,.5)),url("images/background_image.jpg");
+	background-image:url("images/background_image.png");
 	background-size: cover;
 }
 
 /* Grid Layout */
 .grid>div {
 	/*background: rgb(255, 255, 255);*/
-	background-color: rgba(255, 255, 255, 0.199);
+	background-color: rgba(255, 255, 255, 0.24);
 	border-radius: 15px;
 	padding: 1em;
 	animation: zoom 600ms;
@@ -18,11 +18,11 @@ body {
 }
 
 .grid>div:nth-child(odd) {
-	background: rgba(255, 255, 255, 0.199);
+	background: rgba(255, 255, 255, 0.24);
 	height:min-content;
 }
 .grid >div:nth-child(1) {
-	background: rgba(255, 255, 255, 0.199);
+	background: rgba(255, 255, 255, 0.24);
 	height: 80px;
 	border-radius: 5px;
 	
@@ -74,7 +74,7 @@ body {
 	border-radius: 25px;
 	padding: 1em;
 	/*border: 3px solid rgb(19, 19, 19);*/
-	background-color:rgba(255, 255, 255, 0.199);
+	background-color:rgba(255, 255, 255, 0.24);
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.26), 0 0 1px rgba(0,0,0,0.1);
 	color: #4a4a4a;
 	max-width: 100%;
@@ -141,8 +141,10 @@ p {
 li {
 	color: rgba(0, 0, 0, 0.664);
 	line-height: 2em;
+	margin-left:2em;
 
 }
+
 
 
 /* Navigation Bar */
