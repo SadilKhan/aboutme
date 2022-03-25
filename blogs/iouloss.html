@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../assets/css/main.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 	<script>
 		hljs.initHighlightingOnLoad();
 	</script>
@@ -173,7 +173,7 @@
 					Let $B_{g}=\{x_{1},y_{1},x_{2},y_{2}\}$ be the ground truth and
 					$B_{d}=\{x_{1}^{\prime} , y_{1}^{\prime} , x_{2}^{\prime} , y_{2}^{\prime}\}$
 					be the predicted bounding box.</p>
-				<p style="text-align: left">
+				<p style="text-align: left;margin-left:2em">
 					$X= \text{Area of } B_{g}=(x_{2}-x_{1}) \times (y_{2}-y_{1})$
 					<br>$X^{\prime}= \text{Area of } B_{d}=(x_{2}^{\prime}-
 					x_{1}^{\prime})\times (y_{2}^{\prime}-y_{1}^{\prime})$
@@ -250,7 +250,7 @@
 				<p>
 					The Loss function for the Generalized IoU is defined as follows:-
 				</p>
-				<p>
+				<p style="margin-left:2em">
 					Let A and B be two boxes.
 					<br> Let C be the smallest enclosing box.
 					<br> $IoU=\frac{|A\cap B|}{|A \cup B|}$.
@@ -383,8 +383,8 @@
 			</section>
 			<section>
 				<h1 id="Fifth_Point_Header">5. Code</h1>
-				<pre>
-								<code class="python">
+				<pre class="prettyprint">
+								<code class="language-python">
 import os
 import torch
 import math
