@@ -1,0 +1,63 @@
+body {
+	margin: 0;
+	font-family: serif;
+	line-height: 1.3em;
+}
+
+
+/* Iframe Class*/
+.frame
+{
+    -ms-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -o-transform: scale(1.55);
+    -webkit-transform: scale(2.25);
+    transform: scale(1.5);
+
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: center;
+}
+
+.cardgrid {
+	display: grid;
+
+	grid-template-columns: 1fr 2fr;
+	grid-gap: 20px;
+}
+
+.cardgrid>div {
+	border-radius: 25px;
+	padding: 1em;
+	background-color:rgba(255, 255, 255, 0.034);
+	color: #4a4a4a;
+	position: relative;
+    height: 500px;
+    width: auto;
+    margin-top:5em;
+    margin-left: 5em;
+
+
+}
+
+input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */ 
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
